@@ -7,7 +7,7 @@ I have had the opportunity to work on servers using redis as a database and need
 
 The redis protocol is pretty simple so I decided to start an experiment to find out if a faster driver would be worth implementing. The results so far are very encouraging so I decided to continue this project and open source it.
 
-This is how nadis is born. Nadis stands for "No Allocation REDis driver", although "No Allocation" is not completly true. Basically, the only allocations made are when creating a connection or when creating python objects/lists for the request results.
+This is how nadis is born. Nadis stands for "No Allocation reDIS driver", although "No Allocation" is not completly true. Basically, the only allocations made are when creating a connection or when creating python objects/lists for the request results.
 
 For IO (this includes serialization and parsing), 2 pre-allocated circular buffers are used for each connection.
 
