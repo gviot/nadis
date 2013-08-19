@@ -20,3 +20,11 @@ If you want to use nadis
  - Read the source code. It is not complicated and will give an idea of what is implemented and what is dangerous.
  - You should also consider using hiredis-py which is fast and more mature.
 
+Missing features
+================
+
+ - Transactions
+ - A lot of basic commands
+ - Lua
+ - PUB/SUB
+
