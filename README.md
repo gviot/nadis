@@ -18,7 +18,6 @@ If you want to use nadis
 
  - Try redis-py first, if it fast enough for you, use it.
  - Read the source code. It is not complicated and will give an idea of what is implemented and what is dangerous.
- - You should also consider using hiredis-py which is fast and more mature.
 
 Missing features
 ================
