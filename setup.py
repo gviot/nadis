@@ -7,7 +7,7 @@ nadis_impl = Extension('nadis_impl',
       'src/serializer.c',
       'src/connection.c',
       'src/circular_buffer.c'
-    ])
+    ], extra_compile_args=['-std=c99'])
 
 setup (name = "Nadis",
     version = "1.0",
