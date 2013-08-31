@@ -3,7 +3,7 @@
 
 //#define ENABLE_TRACE
 
-#define inline __attribute__ ((noinline))
+//#define inline __attribute__ ((noinline))
 
 #ifdef ENABLE_TRACE
 #define print(...) printf(__VA_ARGS__)
