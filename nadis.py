@@ -63,6 +63,9 @@ class Connection(object):
     def zcard(self, key):
         return self.impl.generic_command("zcard", key)
 
+    def zadd(self, key, *args):
+        return self.impl.generic_command("zadd", key, *args)
+
     def zincrby(self, key, value, member):
         return self.impl.generic_command("zincrby", key, value, member)
 
