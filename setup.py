@@ -1,3 +1,4 @@
+import multiprocessing
 from setuptools import setup, Extension
 
 nadis_impl = Extension('nadis_impl',
