@@ -1,6 +1,8 @@
 Nadis
 =====
 
+![](https://api.travis-ci.org/gviot/nadis.png)
+
 Nadis is a redis driver for Python, implemented mostly in C.
 
 I have had the opportunity to work on servers using redis as a database and needed high performance. But I noticed when using redis-py that it was causing significant overhead to redis requests, even with hiredis installed.
