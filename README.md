@@ -1,7 +1,7 @@
 Nadis
 =====
 
-![](https://api.travis-ci.org/gviot/nadis.png)
+[![Build Status](https://travis-ci.org/gviot/nadis.png)](https://travis-ci.org/gviot/nadis)
 
 Nadis is a redis driver for Python, implemented mostly in C.
 
