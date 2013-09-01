@@ -43,7 +43,7 @@ redis_connect(const char *hostname, int port)
     struct timeval       timeout_val;
     timeout_val.tv_sec  = 5;
     timeout_val.tv_usec = 0;
-    struct fd_set        master_set;
+    fd_set master_set;
     FD_ZERO(&master_set);
     FD_SET(sockfd, &master_set);
     print("Connecting %d...\n", sockfd);
