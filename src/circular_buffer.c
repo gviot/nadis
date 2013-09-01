@@ -34,7 +34,7 @@ buffer_init(circular_buffer *buf)
 static inline int
 select_read(int fd, int timeout){
     struct timeval timeout_val;
-    struct fd_set master_set;
+    fd_set master_set;
     int res = 0;
 
     timeout_val.tv_sec  = timeout;
@@ -81,7 +81,7 @@ buffer_read_from_socket(circular_buffer *buf, int fd, int timeout)
 static inline int
 select_write(int fd, int timeout){
     struct timeval timeout_val;
-    struct fd_set master_set;
+    fd_set master_set;
     int res = 0;
 
     timeout_val.tv_sec  = timeout;
