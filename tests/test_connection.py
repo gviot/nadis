@@ -101,5 +101,12 @@ class ConnectionTest(unittest.TestCase):
         res = p.flush()
         self.assertEqual(res[2], ['tata', '110', 'toto', '100'])
 
+    def test_long_pipeline(self):
+        key = "test"
+        p = self.pool.pipeline()
+        for i in xrange(1000):
+            p.zrevrange(key, 0, -1, withscores=True)
+        p.flush()
+
 if __name__ == "__main__":
     unittest.main()
