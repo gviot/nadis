@@ -36,7 +36,7 @@ typedef struct {
     Py_ssize_t list_length, list_filled;
 } parser_state;
 
-PyObject *parser_get_results(void);
+PyObject *parser_get_results(parser_state *s);
 
 parse_result parser_parse_part(parser_state *s, circular_buffer *buffer);
 parse_result parser_parse_unit(parser_state *s, circular_buffer *buffer);
