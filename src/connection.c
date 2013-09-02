@@ -273,6 +273,8 @@ Connection_generic_command(Connection *self, PyObject *args)
             return NULL;
         }
     }
+    if (buffer_has_bytes(&self->out_buffer) > (CIRCULAR_BUFFER_SIZE / 2))
+        flush_some(self);
     Py_INCREF(Py_None);
     return Py_None;
 }

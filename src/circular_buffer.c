@@ -125,30 +125,60 @@ buffer_write_to_socket(circular_buffer *buf, int fd)
 	return len;
 }
 
+static int
+buffer_va_list_printf(circular_buffer *buf, const char *format, va_list *ap)
+{
+    va_list ap2;
+    int len = 0;
+
+    va_copy(ap2, *ap);
+    len = vsnprintf(buf->write_cursor.position, buf->write_cursor.length,
+        format, *ap);
+    if(len > buf->write_cursor.length)
+        len = (buf->write_cursor.length - len);
+    if (len > 0) {
+        buffer_publish_bytes(buf, len);
+    } else {
+        mark_end_and_rewind(buf);
+        len = buffer_printf(buf, format, ap2);
+    }
+    return len;
+}
+
 int
 buffer_printf(circular_buffer *buf, const char *format, ...)
 {
-	va_list ap;
-    const char *cur;
+	va_list ap, ap2;
 	int len = 0;
 
-    cur = buf->write_cursor.position;
     va_start(ap, format);
+    va_copy(ap2, ap);
     len = vsnprintf(buf->write_cursor.position, buf->write_cursor.length,
     	format, ap);
+    if(len > buf->write_cursor.length)
+        len = (buf->write_cursor.length - len);
     if (len > 0) {
 		buffer_publish_bytes(buf, len);
     } else {
     	mark_end_and_rewind(buf);
-    	len = buffer_printf(buf, format, ap);
+    	len = buffer_va_list_printf(buf, format, &ap2);
     }
     va_end(ap);
+    va_end(ap2);
     return len;
 }
 
 void
 buffer_readable_bytes(circular_buffer *buf, const char **ptr, int *length)
 {
+    if (buf->read_cursor.position == buf->end) {
+        buf->read_cursor.position = buf->data;
+        buf->read_cursor.length =
+            (buf->write_cursor.position - buf->data);
+        buf->write_cursor.length =
+            (buf->data + CIRCULAR_BUFFER_SIZE) - (buf->write_cursor.position);
+        buf->end = buf->data + CIRCULAR_BUFFER_SIZE;
+    }
 	*ptr = buf->read_cursor.position;
 	*length = buf->read_cursor.length;
 }
